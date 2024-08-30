@@ -23,7 +23,7 @@ const Couple = sequelize.define('Couple', {
   phone_number: {
     type: DataTypes.STRING,
   },
-  password_hash: {
+  password: {
     type: DataTypes.STRING,
     allowNull: false,
   },
