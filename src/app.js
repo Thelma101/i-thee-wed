@@ -10,8 +10,8 @@ app.get('/', (req, res) => {
     res.send('Welcome to I thee wed API!');
 });
 
-app.use('/', coupleRoute)
-app.use('/', coupleRoute)
+app.use('/', coupleRoute);
+app.use('/', coupleRoute);
 
 app.listen(PORT, () => {
     console.log(`Connected port: ${PORT}`);
