@@ -11,6 +11,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/', coupleRoute)
+app.use('/', coupleRoute)
 
 app.listen(PORT, () => {
     console.log(`Connected port: ${PORT}`);
