@@ -32,11 +32,21 @@ exports.registerCouple = async ({ first_name, last_name, username, email, phone_
 exports.getAllCouples = async () => {
     try {
         const couples = await Couple.findAll();
-        return { status: 200, message: { Total: couples.length, message: 'Couples retrieved successfully', data: couples } };
+        return { status: 200, message: { message: 'Couples retrieved successfully', data: couples } };
     } catch (error) {
         throw error;
     }
 };
+
+exports.getCouplesCount = async () => {
+    try {
+        const getCount = await Couple.count();
+        return { status: 200, message: { message: 'Couples count retrieved successfully', data: getCount } };
+    } catch (error) 
+    {
+        throw error;
+    }
+}
 
 exports.getCoupleById = async (id) => {
     try {
