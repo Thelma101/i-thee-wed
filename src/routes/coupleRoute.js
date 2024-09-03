@@ -6,7 +6,7 @@ router.post('/api/v1/couple-register', coupleController.registerCouple);
 router.get('/api/v1/couple-all', coupleController.getAllCouples);
 router.get('/api/v1/couple-count', coupleController.getCouplesCount);
 router.get('/api/v1/couple/:id', coupleController.getCoupleById);
-router.post('/api/v1/couple-login', coupleController.login);
+router.post('/api/v1/couple-login', coupleController.loginCouple);
 router.put('/api/v1/couple/:id', coupleController.updateCouple);
 router.delete('/api/v1/couple/:id', coupleController.deleteCouple);
 
