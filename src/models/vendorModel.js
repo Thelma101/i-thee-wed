@@ -14,7 +14,7 @@ const Vendor = sequelize.define('Vendor', {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'regions',  // Reference to the regions table
+            model: 'regions', 
             key: 'id'
         },
         onDelete: 'SET NULL'
@@ -23,7 +23,7 @@ const Vendor = sequelize.define('Vendor', {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'states',  // Reference to the states table
+            model: 'states',
             key: 'id'
         },
         onDelete: 'SET NULL'
