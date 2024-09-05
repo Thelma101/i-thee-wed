@@ -60,3 +60,4 @@ INSERT INTO states (name, region_id) VALUES
 ('Nasarawa', (SELECT id FROM regions WHERE name = 'Central')),
 ('Niger', (SELECT id FROM regions WHERE name = 'Central')),
 ('Plateau', (SELECT id FROM regions WHERE name = 'Central'));
+

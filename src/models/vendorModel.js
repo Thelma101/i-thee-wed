@@ -10,7 +10,7 @@ const Vendor = sequelize.define('Vendor', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    region: {
+    region_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -19,7 +19,7 @@ const Vendor = sequelize.define('Vendor', {
         },
         onDelete: 'SET NULL'
     },
-    state: {
+    state_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
