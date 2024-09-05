@@ -20,7 +20,7 @@ exports.registerVendor = async ({ business_name, category, regionName, stateName
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const vendor = new Vendor({
+        const newVendor = await Vendor.create({
             business_name,
             category,
             regionName,
@@ -29,8 +29,7 @@ exports.registerVendor = async ({ business_name, category, regionName, stateName
             phone_number,
             password: hashedPassword,
         });
-        await vendor.save();
-        return { status: 201, message: { message: 'Vendor registered successfully', data: vendor } };
+        return { status: 201, message: { message: 'Vendor registered successfully', data: newVendor } };
     } catch (error) {
         throw error;
     }
