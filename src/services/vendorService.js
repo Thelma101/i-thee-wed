@@ -35,3 +35,12 @@ exports.registerVendor = async ({ business_name, category, regionName, stateName
         throw error;
     }
 }
+
+exports.getAllVendors = async(id) => {
+   try {
+    const allVendors = await (Vendors.findByPk(id) );
+    return { status: 200, message: { message: 'All vendors retrieved successfully', data: allVendors } };
+   } catch (error) {
+    return res.status(500).json( { message: 'Internal server error' });
+   } 
+}
