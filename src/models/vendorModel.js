@@ -71,7 +71,7 @@ const Vendor = sequelize.define('Vendor', {
     }
 }, {
     timestamps: true,
-    updatedAt: 'updated_at',  // Auto-updates updated_at field
+    updatedAt: 'updated_at',
     createdAt: 'created_at', 
 });
 
