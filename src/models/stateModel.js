@@ -13,13 +13,12 @@ const State = sequelize.define('State', {
             model: Region,
             key: 'id'
         },
-        onDelete: 'CASCADE'
+        allowNull: false
     }
 }, {
     timestamps: false,
 });
 
-Region.hasMany(State, { foreignKey: 'region_id' });
 State.belongsTo(Region, { foreignKey: 'region_id' });
 
 module.exports = State;
