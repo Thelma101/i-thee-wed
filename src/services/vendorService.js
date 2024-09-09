@@ -3,6 +3,42 @@ const Region = require('../models/regionModel');
 const State = require('../models/stateModel');
 const bcrypt = require('bcrypt');
 
+// exports.registerVendor = async ({ business_name, category, regionName, stateName, email, phone_number, password }) => {
+//     try {
+//         const region = await Region.findOne({ where: { name: regionName } });
+//         if (!region) {
+//             return { status: 400, message: { message: 'Invalid region' } };
+//         }
+
+//         const state = await State.findOne({ where: { name: stateName, region_id: region.id } });
+//         if (!state) {
+//             return { status: 400, message: { message: 'Invalid state for the selected region' } };
+//         }
+
+//         // Check if the vendor already exists
+//         const existingVendor = await Vendor.findOne({ where: { email } });
+//         if (existingVendor) {
+//             return { status: 409, message: 'Vendor already exists' };
+//         }
+
+//         const hashedPassword = await bcrypt.hash(password, 10);
+//         const newVendor = await Vendor.create({
+//             business_name,
+//             category,
+//             region:region.id,
+//             state:state.id,
+//             email,
+//             phone_number,
+//             password: hashedPassword,
+//         });
+//         return { status: 201, message: { message: 'Vendor registered successfully', data: newVendor } };
+//     } catch (error) {
+//         throw error;
+//     }
+// }
+
+// Get All Vendors
+
 exports.registerVendor = async ({ business_name, category, stateName, email, phone_number, password }) => {
     try {
         const state = await State.findOne({ where: { name: stateName } });
@@ -22,7 +58,7 @@ exports.registerVendor = async ({ business_name, category, stateName, email, pho
         const newVendor = await Vendor.create({
             business_name,
             category,
-            state_id: state.id,
+            state_id: state.id, // Automatically assign the state
             email,
             phone_number,
             password: hashedPassword,
@@ -34,8 +70,6 @@ exports.registerVendor = async ({ business_name, category, stateName, email, pho
     }
 }
 
-
-// Get All Vendors
 exports.getAllVendors = async () => {
     try {
         const allVendors = await Vendor.findAll({
