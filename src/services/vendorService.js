@@ -3,19 +3,16 @@ const Region = require('../models/regionModel');
 const State = require('../models/stateModel');
 const bcrypt = require('bcrypt');
 
-exports.registerVendor = async ({ business_name, category, regionName, stateName, email, phone_number, password }) => {
+exports.registerVendor = async ({ business_name, category, stateName, email, phone_number, password }) => {
     try {
-        const region = await Region.findOne({ where: { name: regionName } });
-        if (!region) {
-            return { status: 400, message: { message: 'Invalid region' } };
-        }
+        const state = await State.findOne({ where: { name: stateName } });
 
-        const state = await State.findOne({ where: { name: stateName, region_id: region.id } });
         if (!state) {
-            return { status: 400, message: { message: 'Invalid state for the selected region' } };
+            throw new Error('Invalid state');
         }
 
-        // Check if the vendor already exists
+        const region = await Region.findOne({ where: { id: state.region_id } });
+
         const existingVendor = await Vendor.findOne({ where: { email } });
         if (existingVendor) {
             return { status: 409, message: 'Vendor already exists' };
@@ -25,17 +22,18 @@ exports.registerVendor = async ({ business_name, category, regionName, stateName
         const newVendor = await Vendor.create({
             business_name,
             category,
-            region:region.id,
-            state:state.id,
+            state_id: state.id,
             email,
             phone_number,
             password: hashedPassword,
         });
+
         return { status: 201, message: { message: 'Vendor registered successfully', data: newVendor } };
     } catch (error) {
         throw error;
     }
 }
+
 
 // Get All Vendors
 exports.getAllVendors = async () => {
