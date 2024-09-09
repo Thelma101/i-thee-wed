@@ -10,6 +10,15 @@ const Vendor = sequelize.define('Vendor', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    region_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'regions', 
+            key: 'id'
+        },
+        onDelete: 'SET NULL'
+    },
     state_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
