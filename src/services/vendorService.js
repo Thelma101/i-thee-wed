@@ -58,7 +58,7 @@ exports.registerVendor = async ({ business_name, category, stateName, email, pho
         const newVendor = await Vendor.create({
             business_name,
             category,
-            state_id: state.id, // Automatically assign the state
+            state_id: state.id, 
             email,
             phone_number,
             password: hashedPassword,
