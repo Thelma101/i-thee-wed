@@ -1,6 +1,4 @@
--- seedRegionStateData.sql
 
--- Insert Regions
 INSERT INTO regions (name) VALUES
 ('East'),
 ('West'),
@@ -8,9 +6,7 @@ INSERT INTO regions (name) VALUES
 ('South'),
 ('Central');
 
--- Insert States
 
--- East Region
 INSERT INTO states (name, region_id) VALUES
 ('Abia', (SELECT id FROM regions WHERE name = 'East')),
 ('Anambra', (SELECT id FROM regions WHERE name = 'East')),
