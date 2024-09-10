@@ -46,8 +46,6 @@ exports.registerVendor = async ({ business_name, category, stateName, email, pho
         if (!state) {
             throw new Error('Invalid state');
         }
-        
-        const region = await Region.findOne({ where: { id: state.region_id } });
 
         const existingVendor = await Vendor.findOne({ where: { email } });
         if (existingVendor) {
@@ -68,7 +66,8 @@ exports.registerVendor = async ({ business_name, category, stateName, email, pho
     } catch (error) {
         throw error;
     }
-}
+};
+
 
 exports.getAllVendors = async () => {
     try {
