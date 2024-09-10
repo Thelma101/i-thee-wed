@@ -1,5 +1,5 @@
 const Vendor = require('../models/vendorModelOld');
-const Region = require('../models/regionModel');
+// const Region = require('../models/regionModel');
 const State = require('../models/stateModel');
 const bcrypt = require('bcrypt');
 
@@ -39,11 +39,10 @@ const bcrypt = require('bcrypt');
 
 // Get All Vendors
 
-exports.registerVendor = async ({ business_name, category, stateName, email, phone_number, password }) => {
+exports.registerVendor = async ({ business_name, category, state, email, phone_number, password }) => {
     try {
-        const state = await State.findOne({ where: { name: stateName } });
-
-        if (!state) {
+        const stateName = await State.findOne({ where: { name: state } });
+        if (!stateName) {
             throw new Error('Invalid state');
         }
 
@@ -56,7 +55,7 @@ exports.registerVendor = async ({ business_name, category, stateName, email, pho
         const newVendor = await Vendor.create({
             business_name,
             category,
-            state_id: state.id, 
+            state: stateName.id,
             email,
             phone_number,
             password: hashedPassword,

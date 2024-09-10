@@ -7,7 +7,7 @@ const State = sequelize.define('State', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    region_id: {
+    region: {
         type: DataTypes.INTEGER,
         references: {
             model: Region,
@@ -19,6 +19,6 @@ const State = sequelize.define('State', {
     timestamps: false,
 });
 
-State.belongsTo(Region, { foreignKey: 'region_id' });
+State.belongsTo(Region, { foreignKey: 'region' });
 
 module.exports = State;
