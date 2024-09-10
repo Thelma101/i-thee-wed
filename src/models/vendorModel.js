@@ -11,9 +11,9 @@ const Vendor = sequelize.define('Vendor', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    state: {
+    state_id: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         references: {
             model: State,
             key: 'id'
@@ -66,4 +66,4 @@ const Vendor = sequelize.define('Vendor', {
     createdAt: 'created_at', 
 });
 
-module.exports = Vendor;
+// module.exports = Vendor;

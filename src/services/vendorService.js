@@ -54,7 +54,7 @@ exports.registerVendor = async ({ business_name, category, state, email, phone_n
         const newVendor = await Vendor.create({
             business_name,
             category,
-            state: stateName.id,
+            state_id: stateName.id,
             // region: stateName.region,
             email,
             phone_number,
