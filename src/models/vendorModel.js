@@ -12,13 +12,12 @@ const Vendor = sequelize.define('Vendor', {
         allowNull: false,
     },
     state: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: {
             model: State,
             key: 'id'
         },
-        onDelete: 'SET NULL'
     },
     email: {
         type: DataTypes.STRING,

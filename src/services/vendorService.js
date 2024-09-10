@@ -55,6 +55,7 @@ exports.registerVendor = async ({ business_name, category, state, email, phone_n
             business_name,
             category,
             state: stateName.id,
+            // region: stateName.region,
             email,
             phone_number,
             password: hashedPassword,

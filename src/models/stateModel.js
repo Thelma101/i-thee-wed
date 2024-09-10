@@ -7,9 +7,9 @@ const State = sequelize.define('State', {
         allowNull: false,
     },
     region: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }
+        type: DataTypes.STRING,
+        allowNull: true,
+        }
 }, {
     timestamps: false,
 });
