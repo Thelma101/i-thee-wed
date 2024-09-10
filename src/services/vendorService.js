@@ -1,5 +1,4 @@
 const Vendor = require('../models/vendorModelOld');
-// const Region = require('../models/regionModel');
 const State = require('../models/stateModel');
 const bcrypt = require('bcrypt');
 

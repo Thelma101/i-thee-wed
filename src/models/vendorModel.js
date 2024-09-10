@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
+const State = require('./stateModel');
 
 const Vendor = sequelize.define('Vendor', {
     business_name: {
@@ -14,7 +15,7 @@ const Vendor = sequelize.define('Vendor', {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'states',
+            model: State,
             key: 'id'
         },
         onDelete: 'SET NULL'
