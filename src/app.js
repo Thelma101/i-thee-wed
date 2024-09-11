@@ -1,6 +1,3 @@
-Object.keys(require.cache).forEach(function(key) {
-    delete require.cache[key];
-})
 
 const express = require('express');
 const app = express();
@@ -21,3 +18,4 @@ app.listen(PORT, () => {
     console.log(`Connected port: ${PORT}`);
     
 });
+

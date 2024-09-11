@@ -13,11 +13,11 @@ const Vendor = sequelize.define('Vendor', {
     },
     state: {
         type: DataTypes.STRING,
-        allowNull: true,
-        references: {
-            model: State,
-            key: 'id'
-        },
+        allowNull: false,
+        // references: {
+        //     model: State,
+        //     key: 'id'
+        // },
     },
     email: {
         type: DataTypes.STRING,
