@@ -11,7 +11,7 @@ const Vendor = sequelize.define('Vendor', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    state_id: {
+    state: {
         type: DataTypes.STRING,
         allowNull: true,
         references: {
