@@ -1,6 +1,3 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('./database');
-
 const Vendor = sequelize.define('Vendor', {
     business_name: {
       type: DataTypes.STRING,
@@ -11,18 +8,18 @@ const Vendor = sequelize.define('Vendor', {
       allowNull: false,
     },
     state: {
-      type: DataTypes.STRING,  // State is a string now
-      allowNull: false,
+      type: DataTypes.STRING, 
+      allowNull: true,
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false, // Email is now required
-      unique: true,     // Enforcing uniqueness
+      allowNull: true,
+      unique: true,
     },
     phone_number: {
       type: DataTypes.STRING,
       allowNull: false, 
-      unique: true,    // Unique phone number
+      unique: true,
     },
     password: {
       type: DataTypes.STRING,
@@ -53,10 +50,8 @@ const Vendor = sequelize.define('Vendor', {
       defaultValue: DataTypes.NOW,
     }
   }, {
-    tableName: 'Vendors',
     timestamps: true,
     updatedAt: 'updated_at',
     createdAt: 'created_at',
-});
-
-module.exports = Vendor;
+  });
+  

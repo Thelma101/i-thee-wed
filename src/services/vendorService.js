@@ -38,24 +38,52 @@ const bcrypt = require('bcrypt');
 
 // Get All Vendors
 
+// exports.registerVendor = async ({ business_name, category, state, email, phone_number, password }) => {
+//     try {
+//         const stateName = await State.findOne({ where: { name: state } });
+//         if (!stateName) {
+//             throw new Error('Invalid state');
+//         }
+
+//         const existingVendor = await Vendor.findOne({ where: { email } });
+//         if (existingVendor) {
+//             return { status: 409, message: 'Vendor already exists' };
+//         }
+
+//         const hashedPassword = await bcrypt.hash(password, 10);
+//         const newVendor = await Vendor.create({
+//             business_name,
+//             category,
+//             state: stateName.id,
+//             // region: stateName.region,
+//             email,
+//             phone_number,
+//             password: hashedPassword,
+//         });
+
+//         return { status: 201, message: { message: 'Vendor registered successfully', data: newVendor } };
+//     } catch (error) {
+//         throw error;
+//     }
+// };
+
 exports.registerVendor = async ({ business_name, category, state, email, phone_number, password }) => {
     try {
         const stateName = await State.findOne({ where: { name: state } });
         if (!stateName) {
-            throw new Error('Invalid state');
+            return { status: 400, message: 'Invalid state' };
         }
-
         const existingVendor = await Vendor.findOne({ where: { email } });
         if (existingVendor) {
-            return { status: 409, message: 'Vendor already exists' };
+            return { status: 409, message: 'Vendor already exists with this email' };
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
+
         const newVendor = await Vendor.create({
             business_name,
             category,
-            state_id: stateName.id,
-            // region: stateName.region,
+            state: stateName.name,
             email,
             phone_number,
             password: hashedPassword,
@@ -63,7 +91,7 @@ exports.registerVendor = async ({ business_name, category, state, email, phone_n
 
         return { status: 201, message: { message: 'Vendor registered successfully', data: newVendor } };
     } catch (error) {
-        throw error;
+        return { status: 500, message: 'Error registering vendor', error: error.message };
     }
 };
 
