@@ -2,16 +2,19 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const State = sequelize.define('State', {
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    region: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        }
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true, // Ensure each state has a unique name
+  },
 }, {
-    timestamps: false,
+  tableName: 'States',
+  timestamps: false,
 });
 
 module.exports = State;
