@@ -50,14 +50,15 @@ const seedCategories = async () => {
     'Catering & Drinks',
     'Invitations & Paper Goods',
     'Transportation & Accommodation',
-    'Event Spaces'
+    'Event Spaces',
+    'Others'
   ];
 
   // Subcategories
   const subcategories = [
-    { name: 'Bridal Fashion & Apparel', parent: 'Wedding Attire & Accessories' },
-    { name: 'Wedding Jewelry & Accessories', parent: 'Wedding Attire & Accessories' },
-    { name: 'Floral Design & Arrangements', parent: 'Floral & Decor' },
+    { name: 'Wedding Fashion & Apparel', parent: 'Wedding Attire & Accessories' },
+    { name: 'Jewelry & Accessories', parent: 'Wedding Attire & Accessories' },
+    { name: 'Floral Design & Interior', parent: 'Floral & Decor' },
     { name: 'Decor & Rentals', parent: 'Floral & Decor' },
     { name: 'Photographers & Videographers', parent: 'Event Services' },
     { name: 'Wedding Planners', parent: 'Event Services' },
@@ -69,7 +70,8 @@ const seedCategories = async () => {
     { name: 'Invitations & Paper Goods', parent: 'Invitations & Paper Goods' },
     { name: 'Transportation', parent: 'Transportation & Accommodation' },
     { name: 'Accommodation and Travels', parent: 'Transportation & Accommodation' },
-    { name: 'Event Spaces', parent: 'Event Spaces' }
+    { name: 'Event & Spaces', parent: 'Event Spaces' },
+    { name: 'Others', parent_id: null },
   ];
 
   // Insert main categories
