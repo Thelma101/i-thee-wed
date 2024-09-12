@@ -1,4 +1,4 @@
-const State = sequelize.define('State', {
+const Category = sequelize.define('Category', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,

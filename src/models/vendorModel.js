@@ -1,62 +1,78 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('./database');
-
 const Vendor = sequelize.define('Vendor', {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
     business_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
-    category: {
+    owner_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
-    state: {
-      type: DataTypes.STRING,  // State is a string now
+    category_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'Categories',  // assuming a Category table exists
+        key: 'id'
+      }
+    },
+    state_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'States',  // assuming a States table exists
+        key: 'id'
+      }
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false, // Email is now required
-      unique: true,     // Enforcing uniqueness
+      allowNull: true,  // Email can be optional at onboarding
+      unique: true
     },
     phone_number: {
       type: DataTypes.STRING,
-      allowNull: false, 
-      unique: true,    // Unique phone number
+      allowNull: false,
+      unique: true
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     address: {
-      type: DataTypes.STRING, 
-      allowNull: true,
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    website_url: {
+      type: DataTypes.STRING,
+      allowNull: true
     },
     verified: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false,
+      defaultValue: false
     },
     average_rating: {
       type: DataTypes.DECIMAL(2, 1),
-      defaultValue: 0.0,
+      defaultValue: 0.0
     },
     subscription_plan: {
       type: DataTypes.STRING,
-      defaultValue: 'free',
+      defaultValue: 'free'
     },
     created_at: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
+      defaultValue: DataTypes.NOW
     },
     updated_at: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
+      defaultValue: DataTypes.NOW
     }
   }, {
-    tableName: 'Vendors',
     timestamps: true,
     updatedAt: 'updated_at',
-    createdAt: 'created_at',
-});
-
-module.exports = Vendor;
+    createdAt: 'created_at'
+  });
+  

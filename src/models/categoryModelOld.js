@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const State = sequelize.define('State', {
+const Category = sequelize.define('Category', {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -11,4 +11,4 @@ const State = sequelize.define('State', {
   timestamps: false,
 });
 
-module.exports = State;
+module.exports = Category;
