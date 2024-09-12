@@ -1,5 +1,22 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('postgres://user:password@localhost:5432/teedb'); // Update this with your actual connection string
+const config = require('../config/config.json')[process.env.NODE_ENV || 'development'];
+
+const sequelize = new Sequelize(
+    process.env.DB_NAME || config.database,
+    process.env.DB_USER || config.username,
+    process.env.DB_PASS || config.password,
+    {
+        host: process.env.DB_HOST || config.host,
+        dialect: process.env.DB_DIALECT || config.dialect,
+        logging: process.env.DB_LOGGING === 'true' ? console.log : false,
+        pool: {
+            max: 5,
+            min: 0,
+            acquire: 30000,
+            idle: 10000,
+        },
+    }
+);
 
 const Category = sequelize.define('Category', {
   id: {
