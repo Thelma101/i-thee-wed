@@ -16,7 +16,7 @@ const Vendor = sequelize.define('Vendor', {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Categories',  // assuming a Category table exists
+        model: 'Categories',
         key: 'id'
       }
     },
@@ -24,13 +24,13 @@ const Vendor = sequelize.define('Vendor', {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'States',  // assuming a States table exists
+        model: 'States',
         key: 'id'
       }
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: true,  // Email can be optional at onboarding
+      allowNull: true,
       unique: true
     },
     phone_number: {
