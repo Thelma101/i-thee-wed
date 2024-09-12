@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const config = require('../config/config.json')[process.env.NODE_ENV || 'development'];
-const Category = require('../models/category'); // Import your Category model
+const Category = require('../models/category');
 
 const sequelize = new Sequelize(
     process.env.DB_NAME || config.database,
@@ -19,7 +19,6 @@ const sequelize = new Sequelize(
     }
 );
 
-// Main categories in alphabetical order
 const mainCategories = [
     'Catering & Drinks',
     'Event Services',
