@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const config = require('../config/config.json')[process.env.NODE_ENV || 'development'];
-const Category = require('../models/category');
+const Category = require('../models/categoryModel');
 
 const sequelize = new Sequelize(
     process.env.DB_NAME || config.database,
