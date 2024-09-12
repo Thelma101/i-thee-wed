@@ -54,7 +54,7 @@ const State = sequelize.define('State', {
       await sequelize.authenticate();
       console.log('Database connection established.');
       
-      await sequelize.sync(); // No force: true to avoid dropping existing tables
+      await sequelize.sync();
       console.log('Tables synchronized.');
   
       await seedStates();
