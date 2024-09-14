@@ -3,33 +3,29 @@ const State = require('../../../models/stateModel');
 const Category = require('../../../models/categoryModel');
 const bcrypt = require('bcrypt');
 
-exports.registerVendor = async ({ business_name, category, state, email, phone_number, password }) => {
+exports.registerVendor = async ({ business_name, user_name, phone_number, password }) => {
     try {
-        const stateName = await State.findOne({ where: { name: state } });
-        if (!stateName) {
-            return { status: 400, message: 'Invalid state' };
-        }
 
-        const existingVendor = await Vendor.findOne({ where: { email } });
+        const existingVendor = await Vendor.findOne({ where: { phone_number } });
+
         if (existingVendor) {
-            return { status: 409, message: 'Vendor already exists with this email' };
+            return { status: 409, message: 'Vendor already exists with this phone number' };
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const newVendor = await Vendor.create({
             business_name,
-            category,
-            state: stateName.name,
-            email,
+            user_name,
             phone_number,
             password: hashedPassword,
         });
 
         return { status: 201, message: { message: 'Vendor registered successfully', data: newVendor } };
     } catch (error) {
-        // Log the full error for debugging
-        console.error('Error registering vendor:', error);
+        console.log('Error registering vendor: ', error);
+        
         return { status: 500, message: 'Error registering vendor', error: error.message };
     }
 };
+

@@ -15,6 +15,27 @@ const Vendor = sequelize.define('Vendor', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    category_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true, // Make nullable
+        references: {
+            model: 'Categories',
+            key: 'id'
+        }
+    },
+    state_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true, // Make nullable
+        references: {
+            model: 'States',
+            key: 'id'
+        }
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        unique: true
+    },
     phone_number: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -23,27 +44,6 @@ const Vendor = sequelize.define('Vendor', {
     password: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        unique: true
-    },
-    category_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        references: {
-            model: 'Categories',
-            key: 'id'
-        }
-    },
-    state_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        references: {
-            model: 'States',
-            key: 'id'
-        }
     },
     address: {
         type: DataTypes.STRING,
