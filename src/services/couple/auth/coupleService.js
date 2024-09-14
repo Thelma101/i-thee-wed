@@ -5,24 +5,21 @@ const Couple = require('../../../models/couple/coupleModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-exports.registerCouple = async ({ first_name, last_name, username, email, phone_number, password }) => {
+exports.registerCouple = async ({  username, phone_number, password }) => {
     try {
         const usernameExists = await Couple.findOne({ where: { username } });
         if (usernameExists) {
             return { status: 409, message: { message: 'Username already exists' } };
         }
 
-        const emailExists = await Couple.findOne({ where: { email } });
-        if (emailExists) {
-            return { status: 409, message: { message: 'Email already exists' } };
+        const phoneExists = await Couple.findOne({ where: { phone_number } });
+        if (phoneExists) {
+            return { status: 409, message: { message: 'Phone number already exists' } };
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
         const newCouple = await Couple.create({
-            first_name,
-            last_name,
             username,
-            email,
             phone_number,
             password: hashedPassword,
         });

@@ -3,10 +3,14 @@ const bcrypt = require('bcrypt');
 
 exports.registerVendor = async ({ business_name, user_name, phone_number, password }) => {
     try {
+        const usernameExists = await Couple.findOne({ where: { username } });
+        if (usernameExists) {
+            return { status: 409, message: { message: 'Username already exists' } };
+        }
 
-        const existingVendor = await Vendor.findOne({ where: { phone_number } });
+        const phoneExists = await Couple.findOne({ where: { phone_number } });
 
-        if (existingVendor) {
+        if (phoneExists) {
             return { status: 409, message: 'Vendor already exists with this phone number' };
         }
 
