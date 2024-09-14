@@ -1,6 +1,6 @@
-const Vendor = require('../models/vendorModel');
-const State = require('../models/stateModel');
-const Category = require('../models/categoryModel');
+const Vendor = require('../../../models/vendor/vendorModel');
+const State = require('../../../models/stateModel');
+const Category = require('../../../models/categoryModel');
 const bcrypt = require('bcrypt');
 
 exports.registerVendor = async ({ business_name, category_id, state_id, email, phone_number, password }) => {
