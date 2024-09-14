@@ -80,3 +80,4 @@ const Vendor = sequelize.define('Vendor', {
     createdAt: 'created_at'
   });
   
+  

@@ -59,3 +59,5 @@ const Couple = sequelize.define('Couple', {
     updatedAt: 'updated_at',
     createdAt: 'created_at'
 });
+
+module.exports = Couple;
