@@ -17,7 +17,7 @@ const Vendor = sequelize.define('Vendor', {
     },
     category_id: {
         type: DataTypes.INTEGER,
-        allowNull: true, // Make nullable
+        allowNull: true,
         references: {
             model: 'Categories',
             key: 'id'
@@ -25,7 +25,7 @@ const Vendor = sequelize.define('Vendor', {
     },
     state_id: {
         type: DataTypes.INTEGER,
-        allowNull: true, // Make nullable
+        allowNull: true,
         references: {
             model: 'States',
             key: 'id'
