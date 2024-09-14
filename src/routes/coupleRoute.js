@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const coupleController = require('../controllers/coupleController');
+const coupleController = require('../controllers/couple/auth/coupleController');
 
 router.post('/api/v1/couple-register', coupleController.registerCouple);
 router.get('/api/v1/couple-all', coupleController.getAllCouples);

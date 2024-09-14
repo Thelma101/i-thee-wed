@@ -1,3 +1,7 @@
+const { DataTypes } = require('sequelize');
+const sequelize = require('../../config/database');
+
+
 const Vendor = sequelize.define('Vendor', {
     id: {
       type: DataTypes.INTEGER,
@@ -8,7 +12,7 @@ const Vendor = sequelize.define('Vendor', {
       type: DataTypes.STRING,
       allowNull: false
     },
-    owner_name: {
+    user_name: {
       type: DataTypes.STRING,
       allowNull: false
     },

@@ -1,4 +1,7 @@
-const Couple = require('../models/coupleModel');
+// const Couple = require('../../models/coupleModel')
+const Couple = require('../../../models/couple/coupleModel');
+// src/models/couple/coupleModel.js
+// src/services/couple/auth/coupleService.js
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
