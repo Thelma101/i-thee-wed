@@ -20,10 +20,9 @@ const updateCoupleSchema = Joi.object({
     email: Joi.string().email().optional().messages({
         'string.email': 'Email must be a valid email address'
     }),
-    phone_number: Joi.string().pattern(/^\+\d{1,3}\d{10}$/).optional().messages({
-        // 'string.pattern.base': 'Phone number must include country code and be 10 digits long'
-        'string.pattern.base': 'Phone number must include country code and be 10 digits long'
-    })
+    phone_number: Joi.string().pattern(/^(\+?\d{1,3})?\d{10,11}$/).required().messages({
+        'string.pattern.base': 'Phone number must include country code and be 10 to 11 digits long'
+    }),
 });
 
 module.exports = {
