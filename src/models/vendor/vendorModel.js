@@ -11,7 +11,7 @@ const Vendor = sequelize.define('Vendor', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    user_name: {
+    username: {
         type: DataTypes.STRING,
         allowNull: false
     },
