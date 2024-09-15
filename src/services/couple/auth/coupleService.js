@@ -1,4 +1,4 @@
-// const Couple = require('../../models/coupleModel')
+const { updateCoupleSchema } = require('../../../validators/authValidation');
 const Couple = require('../../../models/couple/coupleModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -89,6 +89,10 @@ exports.loginCouple = async ({ username, phone_number, password }) => {
 
 exports.updateCouple = async ({ id, first_name, last_name, email, phone_number }) => {
     try {
+        const { error } = updateCoupleSchema.validate({ first_name, last_name, email, phone_number });
+        if (error) {
+            return { status: 400, message: { message: error.details[0].message } };
+        }
         const couple = await Couple.findByPk(id);
         if (!couple) {
             return { status: 404, message: { message: 'Couple data not found' } };
