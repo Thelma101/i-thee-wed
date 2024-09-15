@@ -7,6 +7,11 @@ const jwt = require('jsonwebtoken');
 
 exports.registerCouple = async ({  username, phone_number, password }) => {
     try {
+        const { error } = registerCoupleSchema.validate({ username, phone_number, password });
+        if (error) {
+            return { status: 400, message: { message: error.details[0].message } };
+        }
+        
         const usernameExists = await Couple.findOne({ where: { username } });
         if (usernameExists) {
             return { status: 409, message: { message: 'Username already exists' } };
