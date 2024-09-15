@@ -1,5 +1,5 @@
-const { updateCoupleSchema } = require('../../../validators/authValidation');
-const { registerCoupleSchema } = require('../../../validators/authValidation');
+const { registerCoupleSchema } = require('../../../middlewares/validators/couple/authValidation');
+const { updateCoupleSchema } = require('../../../middlewares/validators/couple/authValidation');
 const Couple = require('../../../models/couple/coupleModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
