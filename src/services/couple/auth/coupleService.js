@@ -1,7 +1,5 @@
 // const Couple = require('../../models/coupleModel')
 const Couple = require('../../../models/couple/coupleModel');
-// src/models/couple/coupleModel.js
-// src/services/couple/auth/coupleService.js
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -11,7 +9,7 @@ exports.registerCouple = async ({  username, phone_number, password }) => {
         if (error) {
             return { status: 400, message: { message: error.details[0].message } };
         }
-        
+
         const usernameExists = await Couple.findOne({ where: { username } });
         if (usernameExists) {
             return { status: 409, message: { message: 'Username already exists' } };
