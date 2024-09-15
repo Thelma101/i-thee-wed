@@ -1,7 +1,7 @@
 const Vendor = require('../../../models/vendor/vendorModel');
 const bcrypt = require('bcrypt');
 
-exports.registerVendor = async ({ business_name, user_name, phone_number, password }) => {
+exports.registerVendor = async ({ business_name, username, phone_number, password }) => {
     try {
         const usernameExists = await Vendor.findOne({ where: { username } });
         if (usernameExists) {
@@ -18,7 +18,7 @@ exports.registerVendor = async ({ business_name, user_name, phone_number, passwo
 
         const newVendor = await Vendor.create({
             business_name,
-            user_name,
+            username,
             phone_number,
             password: hashedPassword,
         });
