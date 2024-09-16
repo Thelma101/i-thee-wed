@@ -10,6 +10,6 @@ const registerVendorSchema = Joi.object({
     category_id: Joi.number().integer().optional(),  // Optional for initial registration
     state_id: Joi.number().integer().optional(),  // Optional for initial registration
     email: Joi.string().email().optional(),  // Optional but must be a valid email if provided
-    address: Joi.string().optional(),  // Optional
+    address: Joi.string().optional(),
     website_url: Joi.string().uri().optional(),
 });
