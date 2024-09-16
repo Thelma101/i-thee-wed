@@ -11,7 +11,7 @@ exports.registerVendor = async ({ business_name, username, phone_number, passwor
         const phoneExists = await Vendor.findOne({ where: { phone_number } });
 
         if (phoneExists) {
-            return { status: 409, message: 'Vendor already exists with this phone number' };
+            return { status: 409, message: 'Phone number already exists' };
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
