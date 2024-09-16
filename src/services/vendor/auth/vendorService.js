@@ -1,5 +1,7 @@
 const Vendor = require('../../../models/vendor/vendorModel');
+const { registerVendorSchema, updateVendorSchema } = require('../../../middlewares/validators/couple/authValidation');
 const bcrypt = require('bcrypt');
+const joi = require('joi');
 
 exports.registerVendor = async ({ business_name, username, phone_number, password }) => {
     try {
