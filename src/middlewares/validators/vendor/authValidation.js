@@ -6,7 +6,7 @@ const registerVendorSchema = Joi.object({
     phone_number: Joi.string()
         .pattern(/^([0]{1}[7-9]{1}[0-9]{9}|[7-9]{1}[0-9]{9})$/)
         .required(),  // Nigerian phone number validation
-    password: Joi.string().min(6).required(),  // Ensure password strength
+    password: Joi.string().min(6).required(),
     category_id: Joi.number().integer().optional(),
     state_id: Joi.number().integer().optional(),
     email: Joi.string().email().optional(),
