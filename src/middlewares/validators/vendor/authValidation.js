@@ -9,7 +9,7 @@ const registerVendorSchema = Joi.object({
     password: Joi.string().min(6).required(),  // Ensure password strength
     category_id: Joi.number().integer().optional(),  // Optional for initial registration
     state_id: Joi.number().integer().optional(),  // Optional for initial registration
-    email: Joi.string().email().optional(),  // Optional but must be a valid email if provided
+    email: Joi.string().email().optional(),
     address: Joi.string().optional(),
     website_url: Joi.string().uri().optional(),
 });
