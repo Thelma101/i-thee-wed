@@ -1,8 +1,8 @@
 const Joi = require('joi');
 
 const registerVendorSchema = Joi.object({
-    business_name: Joi.string().min(5).required(),   // Ensure a meaningful business name
-    username: Joi.string().min(4).alphanum().required(),  // Minimum 4 characters, alphanumeric
+    business_name: Joi.string().min(5).required(),
+    username: Joi.string().min(4).alphanum().required(),
     phone_number: Joi.string()
         .pattern(/^([0]{1}[7-9]{1}[0-9]{9}|[7-9]{1}[0-9]{9})$/)
         .required(),
