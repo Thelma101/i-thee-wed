@@ -5,7 +5,7 @@ const registerVendorSchema = Joi.object({
     username: Joi.string().min(4).alphanum().required(),  // Minimum 4 characters, alphanumeric
     phone_number: Joi.string()
         .pattern(/^([0]{1}[7-9]{1}[0-9]{9}|[7-9]{1}[0-9]{9})$/)
-        .required(),  // Nigerian phone number validation
+        .required(),
     password: Joi.string().min(6).required(),
     category_id: Joi.number().integer().optional(),
     state_id: Joi.number().integer().optional(),
