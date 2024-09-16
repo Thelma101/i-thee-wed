@@ -1,5 +1,5 @@
 const Vendor = require('../../../models/vendor/vendorModel');
-const { registerVendorSchema, updateVendorSchema } = require('../../../middlewares/validators/couple/authValidation');
+const { registerVendorSchema, updateVendorSchema } = require('../../../middlewares/validators/vendor/authValidation');
 const bcrypt = require('bcrypt');
 const joi = require('joi');
 const { ValidationError } = require('sequelize');
@@ -29,12 +29,21 @@ exports.registerVendor = async ({ business_name, username, phone_number, passwor
         return { status: 201, message: { message: 'Vendor registered successfully', data: newVendor } };
     } catch (error) {
         if (error instanceof ValidationError) {
-            const errorMessages = error.errors.map(err => err.message);
+            // const errorMessages = error.errors.map(err => err.message);
+            // return { status: 400, message: { message: 'Validation error', details: errorMessages } };
+
+            const errorMessages = error.errors.map((err) => {
+                if (err.type === 'notNull Violation') {
+                    return `${err.path} is a required field and cannot be null.`;
+                } else {
+                    return err.message;
+                }
+            });
             return { status: 400, message: { message: 'Validation error', details: errorMessages } };
         }
-            console.log('Error registering vendor: ', error);
+        console.log('Error registering vendor: ', error);
 
-            return { status: 500, message: 'Error registering vendor', error: error.message };
-        }
-    };
+        return { status: 500, message: 'Error registering vendor', error: error.message };
+    }
+};
 
