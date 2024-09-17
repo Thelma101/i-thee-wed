@@ -95,28 +95,27 @@ exports.updateVendor = async ({ id, business_name, phone_number }) => { // passw
         const updatedVendor = await vendor.update({
             business_name,
             phone_number,
-        }); 
+        });
         return { status: 200, message: { message: 'Vendor updated successfully', data: updatedVendor } };
-        } catch (error) {
-            if (error instanceof ValidationError) {
-                const errorMessages = error.errors.map((err) => {
-                    if (err.type === 'NotNull Violation') {
-                        return `${err.path} is a required field and cannot be null.`;
-                    } else {
-                        return err.message;
-                    }
-                });
-                return { status: 400, message: { message: 'Validation error', details: errorMessages } };
-            }
-            console.log('Error updating vendor: ', error);
-            return { status: 500, message: 'Error updating vendor', error: error.message };
+    } catch (error) {
+        if (error instanceof ValidationError) {
+            const errorMessages = error.errors.map((err) => {
+                if (err.type === 'NotNull Violation') {
+                    return `${err.path} is a required field and cannot be null.`;
+                } else {
+                    return err.message;
+                }
+            });
+            return { status: 400, message: { message: 'Validation error', details: errorMessages } };
         }
+        console.log('Error updating vendor: ', error);
+        return { status: 500, message: 'Error updating vendor', error: error.message };
+    }
 };
 
-exports.deleteVendor = async () => {
-    const { id } = req.params.id
+exports.deleteVendor = async (id) => {
     try {
-        const vendor = await Vendor.findByIdAndDelete(id);
+        const vendor = await Vendor.findByPk(id);
         if (!vendor) {
             return res.status(404).json({ message: 'Vendor not found' });
         }
