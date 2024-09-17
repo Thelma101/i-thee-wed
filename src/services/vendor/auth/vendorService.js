@@ -6,7 +6,7 @@ const { ValidationError } = require('sequelize');
 
 exports.registerVendor = async ({ business_name, username, phone_number, password }) => {
     try {
-        const { error } = registerCoupleSchema.validate({ business_name, username, phone_number, password });
+        const { error } = registerVendorSchema.validate({ business_name, username, phone_number, password });
         if (error) {
             return { status: 400, message: { message: error.details[0].message } };
         }
