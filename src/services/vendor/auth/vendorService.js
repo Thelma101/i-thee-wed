@@ -110,6 +110,7 @@ exports.deleteVendor = async (id) => {
 
 exports.loginVendor = async ({ username, phone_number, password }) => {
     try {
+        // const vendor = await Vendor.findOne({ where: { username, phone_number } });
         const vendor = await Vendor.findOne({ where: { username, phone_number } });
         if (!vendor) {
             return { status: 404, message: { message: 'Invalid login credentials' } };

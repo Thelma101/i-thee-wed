@@ -9,7 +9,7 @@ router.delete('/api/v1/vendor-delete/:id', vendorController.deleteVendor);
 router.put('/api/v1/vendor-update/:id', vendorController.updateVendor);
 router.get('/api/v1/vendor-count', vendorController.getVendorsCount);
 router.get('/api/v1/vendor/:id', vendorController.getVendorById);
-// router.post('/api/v1/vendor-login', vendorController.loginVendor);
+router.post('/api/v1/vendor-login', vendorController.loginVendor);
 // router.post('/api/v1/vendor-logout', vendorController.logoutVendor);
 // router.post('/api/v1/vendor-reset-password', vendorController.resetPassword);
 // router.post('/api/v1/vendor-change-password', vendorController.changePassword);
