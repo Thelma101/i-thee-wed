@@ -116,7 +116,6 @@ exports.deleteCouple = async (id) => {
         if (!couple) {
             return { status: 404, message: { message: 'Couple data not found' } };
         }
-
         await couple.destroy();
         return { status: 200, message: { message: 'Couple data deleted successfully' } };
     } catch (error) {

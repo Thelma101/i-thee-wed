@@ -117,9 +117,10 @@ exports.deleteVendor = async (id) => {
     try {
         const vendor = await Vendor.findByPk(id);
         if (!vendor) {
-            return res.status(404).json({ message: 'Vendor not found' });
+            return { status: 404, message: { message: 'Vendor data not found' } };
         }
-        return res.status(200).json({ message: 'Vendor deleted successfully' });
+        await vendor.destroy();
+        return {status: 200, message: { message: 'Vendor deleted successfully' }};
     } catch (error) {
         throw error;
     }
