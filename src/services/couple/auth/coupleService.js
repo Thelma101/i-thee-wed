@@ -98,6 +98,7 @@ exports.updateCouple = async (id, updateData) => {
         throw error;
     }
 };
+
 exports.deleteCouple = async (id) => {
     try {
         const couple = await Couple.findByPk(id);

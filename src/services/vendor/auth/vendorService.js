@@ -87,7 +87,6 @@ exports.updateVendor = async (id, updateData) => {
         if (!vendor) {
             return { status: 404, message: { message: 'Vendor not found' } };
         }
-
         await vendor.update(updateData);
         return { status: 200, message: { message: 'Vendor updated successfully', data: vendor } };
     } catch (error) {
@@ -103,7 +102,7 @@ exports.deleteVendor = async (id) => {
             return { status: 404, message: { message: 'Vendor data not found' } };
         }
         await vendor.destroy();
-        return {status: 200, message: { message: 'Vendor deleted successfully' }};
+        return { status: 200, message: { message: 'Vendor deleted successfully' } };
     } catch (error) {
         throw error;
     }
