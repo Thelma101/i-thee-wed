@@ -122,6 +122,6 @@ exports.deleteVendor = async () => {
         }
         return res.status(200).json({ message: 'Vendor deleted successfully' });
     } catch (error) {
-        
+        throw error;
     }
 };
