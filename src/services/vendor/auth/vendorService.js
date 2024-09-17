@@ -51,3 +51,14 @@ exports.registerVendor = async ({ business_name, username, phone_number, passwor
     }
 };
 
+exports.getAllVendors = async () => {
+    try {
+        const getAll = Vendor.findAll();
+        const vendors = await Vendor.findAll();
+        return { status: 200, message: { message: 'Vendors retrieved successfully', data: vendors } };
+    } catch (error) {
+        throw error;
+    }
+};
+
+
