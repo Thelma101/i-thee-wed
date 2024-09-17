@@ -95,7 +95,7 @@ exports.updateVendor = async ({ id, business_name, phone_number }) => { // passw
         const updatedVendor = await vendor.update({
             business_name,
             phone_number,
-        }); // password is optional
+        }); 
         return { status: 200, message: { message: 'Vendor updated successfully', data: updatedVendor } };
         } catch (error) {
             if (error instanceof ValidationError) {
@@ -111,4 +111,17 @@ exports.updateVendor = async ({ id, business_name, phone_number }) => { // passw
             console.log('Error updating vendor: ', error);
             return { status: 500, message: 'Error updating vendor', error: error.message };
         }
+};
+
+exports.deleteVendor = async () => {
+    const vendorId = req.params.id
+    try {
+        const vendor = await Vendor.findByIdAndDelete(vendorId);
+        if (!vendor) {
+            return res.status(404).json({ message: 'Vendor not found' });
+        }
+        return res.status(200).json({ message: 'Vendor deleted successfully' });
+    } catch (error) {
+        
+    }
 };
