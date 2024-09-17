@@ -114,9 +114,9 @@ exports.updateVendor = async ({ id, business_name, phone_number }) => { // passw
 };
 
 exports.deleteVendor = async () => {
-    const vendorId = req.params.id
+    const { id } = req.params.id
     try {
-        const vendor = await Vendor.findByIdAndDelete(vendorId);
+        const vendor = await Vendor.findByIdAndDelete(id);
         if (!vendor) {
             return res.status(404).json({ message: 'Vendor not found' });
         }
