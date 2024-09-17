@@ -6,6 +6,10 @@ const { ValidationError } = require('sequelize');
 
 exports.registerVendor = async ({ business_name, username, phone_number, password }) => {
     try {
+        const { error } = registerCoupleSchema.validate({ business_name, username, phone_number, password });
+        if (error) {
+            return { status: 400, message: { message: error.details[0].message } };
+        }
         const usernameExists = await Vendor.findOne({ where: { username } });
         if (usernameExists) {
             return { status: 409, message: { message: 'Username already exists' } };

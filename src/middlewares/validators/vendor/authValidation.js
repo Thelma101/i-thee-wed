@@ -73,7 +73,6 @@ const registerVendorSchema = Joi.object({
         }),
 });
 
-// Vendor Update Schema
 const updateVendorSchema = Joi.object({
     business_name: Joi.string()
         .min(5)
