@@ -108,3 +108,21 @@ exports.deleteVendor = async (id) => {
         throw error;
     }
 };
+
+exports.loginVendor = async ({ username, phone_number, password }) => {
+    try {
+        const vendor = await Vendor.findOne({ where: { username, phone_number } });
+        if (!vendor) {
+            return { status: 404, message: { message: 'Invalid login credentials' } };
+        }
+
+        const passwordMatch = await bcrypt.compare(password, vendor.password);
+        if (!passwordMatch) {
+            return { status: 401, message: { message: 'Incorrect password' } };
+        }
+
+        return { status: 200, message: { message: 'Login successful', data: vendor } };
+    } catch (error) {
+        throw error;
+    }
+};
