@@ -81,37 +81,20 @@ exports.getVendorById = async (id) => {
     }
 };
 
-exports.updateVendor = async ({ id, business_name, phone_number }) => { // password is optional
+exports.updateVendor = async (id, updateData) => {
     try {
-        const { error } = updateVendorSchema.validate({ id, business_name, phone_number });
-        if (error) {
-            return { status: 400, message: { message: error.details[0].message } };
-        }
         const vendor = await Vendor.findByPk(id);
         if (!vendor) {
             return { status: 404, message: { message: 'Vendor not found' } };
         }
 
-        const updatedVendor = await vendor.update({
-            business_name,
-            phone_number,
-        });
-        return { status: 200, message: { message: 'Vendor updated successfully', data: updatedVendor } };
+        await vendor.update(updateData);
+        return { status: 200, message: { message: 'Vendor updated successfully', data: vendor } };
     } catch (error) {
-        if (error instanceof ValidationError) {
-            const errorMessages = error.errors.map((err) => {
-                if (err.type === 'NotNull Violation') {
-                    return `${err.path} is a required field and cannot be null.`;
-                } else {
-                    return err.message;
-                }
-            });
-            return { status: 400, message: { message: 'Validation error', details: errorMessages } };
-        }
-        console.log('Error updating vendor: ', error);
-        return { status: 500, message: 'Error updating vendor', error: error.message };
+        throw error;
     }
 };
+
 
 exports.deleteVendor = async (id) => {
     try {
