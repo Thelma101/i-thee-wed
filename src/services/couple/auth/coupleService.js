@@ -3,7 +3,7 @@ const Couple = require('../../../models/couple/coupleModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-exports.registerCouple = async ({  username, phone_number, password }) => {
+exports.registerCouple = async ({ username, phone_number, password }) => {
     try {
         const { error } = registerCoupleSchema.validate({ username, phone_number, password });
         if (error) {
@@ -45,8 +45,7 @@ exports.getCouplesCount = async () => {
     try {
         const getCount = await Couple.count();
         return { status: 200, message: { message: 'Couples count retrieved successfully', data: getCount } };
-    } catch (error) 
-    {
+    } catch (error) {
         throw error;
     }
 }
@@ -87,29 +86,18 @@ exports.loginCouple = async ({ username, phone_number, password }) => {
     }
 };
 
-exports.updateCouple = async ({ id, first_name, last_name, email, phone_number }) => {
+exports.updateCouple = async (id, updateData) => {
     try {
-        const { error } = updateCoupleSchema.validate({ first_name, last_name, email, phone_number });
-        if (error) {
-            return { status: 400, message: { message: error.details[0].message } };
-        }
         const couple = await Couple.findByPk(id);
         if (!couple) {
             return { status: 404, message: { message: 'Couple data not found' } };
         }
-
-        couple.first_name = first_name || couple.first_name;
-        couple.last_name = last_name || couple.last_name;
-        couple.email = email || couple.email;
-        couple.phone_number = phone_number || couple.phone_number;
-
-        await couple.save();
+        await couple.update(updateData);
         return { status: 200, message: { message: 'Couple data updated successfully', data: couple } };
     } catch (error) {
         throw error;
     }
 };
-
 exports.deleteCouple = async (id) => {
     try {
         const couple = await Couple.findByPk(id);
