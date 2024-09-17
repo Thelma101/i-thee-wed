@@ -60,4 +60,55 @@ exports.getAllVendors = async () => {
     }
 };
 
+exports.getVendorsCount = async () => {
+    try {
+        const getCount = await Vendor.count();
+        return { status: 200, message: { message: 'Vendors count retrieved successfully', data: getCount } };
+    } catch (error) {
+        throw error;
+    }
+};
 
+exports.getVendorById = async (id) => {
+    try {
+        const vendor = await Vendor.findByPk(id);
+        if (!vendor) {
+            return { status: 404, message: { message: 'Vendor not found' } };
+        }
+        return { status: 200, message: { message: 'Vendor retrieved successfully', data: vendor } };
+    } catch (error) {
+        throw error;
+    }
+};
+
+exports.updateVendor = async ({ id, business_name, phone_number }) => { // password is optional
+    try {
+        const { error } = updateVendorSchema.validate({ id, business_name, phone_number });
+        if (error) {
+            return { status: 400, message: { message: error.details[0].message } };
+        }
+        const vendor = await Vendor.findByPk(id);
+        if (!vendor) {
+            return { status: 404, message: { message: 'Vendor not found' } };
+        }
+
+        const updatedVendor = await vendor.update({
+            business_name,
+            phone_number,
+        }); // password is optional
+        return { status: 200, message: { message: 'Vendor updated successfully', data: updatedVendor } };
+        } catch (error) {
+            if (error instanceof ValidationError) {
+                const errorMessages = error.errors.map((err) => {
+                    if (err.type === 'NotNull Violation') {
+                        return `${err.path} is a required field and cannot be null.`;
+                    } else {
+                        return err.message;
+                    }
+                });
+                return { status: 400, message: { message: 'Validation error', details: errorMessages } };
+            }
+            console.log('Error updating vendor: ', error);
+            return { status: 500, message: 'Error updating vendor', error: error.message };
+        }
+};
