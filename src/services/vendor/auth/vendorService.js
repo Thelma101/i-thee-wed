@@ -132,19 +132,3 @@ exports.loginVendor = async ({ username, phone_number, password }) => {
     }
 };
 
-exports.loginVendor = async ({ username, phone_number, password }) => {
-    try {
-        let vendor;
-        if (username) {
-            vendor = await Vendor.findOne({ where: { username } });
-        } else if (phone_number) {
-            vendor = await Vendor.findOne({ where: { phone_number } });
-        }
-        if (!vendor) {
-            return { status: 404, message: { message: 'Invalid login credentials' } };
-        }
-        // ... rest of the code remains the same
-    } catch (error) {
-        throw error;
-    }
-};
