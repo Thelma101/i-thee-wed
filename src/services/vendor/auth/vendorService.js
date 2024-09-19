@@ -117,7 +117,7 @@ exports.loginVendor = async ({ username, phone_number, password }) => {
             vendor = await Vendor.findOne({ where: { phone_number } });
         }
         if (!username && !phone_number) {
-            return { status: 400, message: { message: 'Username or phone number is required' } };
+            return { status: 400, message: { message: 'Invalid login credentials' } };
 
         }
 
