@@ -110,9 +110,15 @@ exports.deleteVendor = async (id) => {
 
 exports.loginVendor = async ({ username, phone_number, password }) => {
     try {
-        const vendor = await Vendor.findOne({ where: { username, phone_number } });
-        if (!vendor) {
-            return { status: 404, message: { message: 'Invalid login credentials' } };
+        if (username) {
+        const vendorUsername = await Vendor.findOne({ where: { phone_number } })
+        } else {
+            const vendor = await Vendor.findOne({ where: { username, phone_number } });
+        }
+        const vendorPhone = await Vendor.findOne({ where: { phone_number } });
+        if (!username && !phone_number) {
+            return { status: 400, message: { message: 'Username or phone number is required' } };
+
         }
 
         const passwordMatch = await bcrypt.compare(password, vendor.password);
@@ -125,3 +131,20 @@ exports.loginVendor = async ({ username, phone_number, password }) => {
         throw error;
     }
 };
+
+exports.loginVendor = async ({ username, phone_number, password }) => {
+    try {
+      let vendor;
+      if (username) {
+        vendor = await Vendor.findOne({ where: { username } });
+      } else if (phone_number) {
+        vendor = await Vendor.findOne({ where: { phone_number } });
+      }
+      if (!vendor) {
+        return { status: 404, message: { message: 'Invalid login credentials' } };
+      }
+      // ... rest of the code remains the same
+    } catch (error) {
+      throw error;
+    }
+  };
