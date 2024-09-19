@@ -1,5 +1,5 @@
 node modules
 .env
-controllers
+services
 config.json
 migrations
