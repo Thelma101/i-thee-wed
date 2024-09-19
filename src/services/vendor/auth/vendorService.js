@@ -131,3 +131,16 @@ exports.loginVendor = async ({ username, phone_number, password }) => {
         throw error;
     }
 };
+
+exports.forgotPassword = async ({ username, phone_number }) => {
+    try {
+        const vendor = await Vendor.findOne({ where: { username, phone_number } });
+        if (!vendor) {
+            return { status: 404, message: { message: 'Vendor not found' } };
+        }
+        // Generate a random token
+        const token = crypto.randomBytes(20).toString('hex');
+        // Set the token and expiration time in the database
+        await vendor.update({ resetPasswordToken: token, resetPasswordExpires: Date.now() + 3600000 }); // 1 hour
+        // Send an email with the reset password link
+        
