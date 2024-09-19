@@ -22,7 +22,7 @@ const registerVendorSchema = Joi.object({
         .pattern(/^\+?[0-9]{10,11}$/)
         .required()
         .messages({
-            'string.pattern.base': 'Phone number must include country code and be 10 to 11 digits long',
+            'string.pattern.base': 'Phone number must be 10 to 11 digits long',
             'any.required': 'Phone number is a required field'
         }),
 
