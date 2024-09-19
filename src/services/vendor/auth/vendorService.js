@@ -111,7 +111,7 @@ exports.deleteVendor = async (id) => {
 exports.loginVendor = async ({ username, phone_number, password }) => {
     try {
         if (username) {
-        const vendorUsername = await Vendor.findOne({ where: { phone_number } })
+        const vendorUsername = await Vendor.findOne({ where: { usernamer } })
         } else {
             const vendor = await Vendor.findOne({ where: { username, phone_number } });
         }
