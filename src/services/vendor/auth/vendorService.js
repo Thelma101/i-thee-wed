@@ -131,4 +131,3 @@ exports.loginVendor = async ({ username, phone_number, password }) => {
         throw error;
     }
 };
-
