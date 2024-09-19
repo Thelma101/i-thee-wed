@@ -143,4 +143,38 @@ exports.forgotPassword = async ({ username, phone_number }) => {
         // Set the token and expiration time in the database
         await vendor.update({ resetPasswordToken: token, resetPasswordExpires: Date.now() + 3600000 }); // 1 hour
         // Send an email with the reset password link
-        
+
+        return { status: 200, message: { message: 'Password reset link sent successfully' } };
+        // Send email using a service like nodemailer
+        // const transporter = nodemailer.createTransport({
+        //     service: 'gmail',
+        //     auth: {
+        //         user: process.env.EMAIL_USER,
+        //         pass: process.env.EMAIL_PASSWORD
+        //     }
+        // });
+        //
+        // const mailOptions = {
+        //     from: process.env.EMAIL_USER,
+        //     to: vendor.email,
+        //     subject: 'Password Reset',
+        //     html: `
+        //         <h1>Password Reset</h1>
+        //         <p>To reset your password, please click on the following link:</p>
+        //         <a href="${process.env.CLIENT_URL}/reset-password/${token}">Reset Password</a>
+        //         <p>This link will expire in 1 hour.</p>
+        //     `
+        // };
+        //
+        // transporter.sendMail(mailOptions, (error, info) => {
+            // if (error) {
+            //     console.log('Error sending email: ', error);
+            // } else {
+            //     console.log('Email sent: ', info.response);
+            // }
+        // });
+        //
+    } catch (error) {
+        throw error;
+    }
+};
