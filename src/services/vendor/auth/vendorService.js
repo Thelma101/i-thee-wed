@@ -113,13 +113,10 @@ exports.loginVendor = async ({ username, phone_number, password }) => {
         let vendor;
         if (username) {
             vendor = await Vendor.findOne({ where: { username } })
-        } else {
+        } else if (phone_number) {
             vendor = await Vendor.findOne({ where: { phone_number } });
         }
-        if (!username && !phone_number) {
-            return { status: 400, message: { message: 'Invalid login credentials' } };
 
-        }
         if (!vendor) {
             return { status: 404, message: { message: 'Vendor not found' } };
         }
@@ -130,7 +127,6 @@ exports.loginVendor = async ({ username, phone_number, password }) => {
         if (!passwordMatch) {
             return { status: 401, message: { message: 'Incorrect password' } };
         }
-
         return { status: 200, message: { message: 'Login successful', data: vendor } };
     } catch (error) {
         throw error;
@@ -172,11 +168,11 @@ exports.forgotPassword = async ({ username, phone_number }) => {
         // };
         //
         // transporter.sendMail(mailOptions, (error, info) => {
-            // if (error) {
-            //     console.log('Error sending email: ', error);
-            // } else {
-            //     console.log('Email sent: ', info.response);
-            // }
+        // if (error) {
+        //     console.log('Error sending email: ', error);
+        // } else {
+        //     console.log('Email sent: ', info.response);
+        // }
         // });
         //
     } catch (error) {
