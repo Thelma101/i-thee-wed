@@ -120,7 +120,12 @@ exports.loginVendor = async ({ username, phone_number, password }) => {
             return { status: 400, message: { message: 'Invalid login credentials' } };
 
         }
-
+        if (!vendor) {
+            return { status: 404, message: { message: 'Vendor not found' } };
+        }
+        if (!password) {
+            return { status: 400, message: { message: 'Password is required' } };
+        }
         const passwordMatch = await bcrypt.compare(password, vendor.password);
         if (!passwordMatch) {
             return { status: 401, message: { message: 'Incorrect password' } };
